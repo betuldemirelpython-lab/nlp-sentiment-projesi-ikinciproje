@@ -1,0 +1,9 @@
+#backend requirements.txt
+fastapi
+uvicorn
+torch
+transformers
+pydantic
+python-multipart
+python-dotenv
+httpx
