@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+# import google.generativeai as genai  # Disabled (module not installed)
 import os
 import json
 import re
@@ -19,11 +19,10 @@ st.set_page_config(
 # On Streamlit Cloud, we use st.secrets. Locally, we use .env
 API_KEY = st.secrets.get("API_KEY") or os.getenv("API_KEY")
 
+# Gemini API şu anda kullanılmayacak. Heuristic analiz kullanılacak.
+HAS_GEMINI = False
 if API_KEY:
-    genai.configure(api_key=API_KEY)
-    HAS_GEMINI = True
-else:
-    HAS_GEMINI = False
+    st.info("Gemini API anahtarı sağlandı ancak devre dışı bırakıldı; sadece kelime analizi kullanılacak.")
 
 # Header Design
 st.title("🧠 AI Sentiment Analysis (Duygu Analizi)")

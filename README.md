@@ -1,6 +1,17 @@
 # NLP Sentiment Project
 
-This repository contains a Python project for sentiment analysis on Turkish text. The project includes a Streamlit web interface, a FastAPI backend, and utilities for preprocessing and model inference.
+Bu proje, Streamlit ile bir duygu analiz arayüzü sunar. Gemini API yerine yerel kelime‑tabanlı (heuristic) analiz kullanılır, bu yüzden geçerli bir Google Gemini API anahtarına ihtiyaç yoktur.
+
+## Çalıştırma
+1. **Bağımlılıkları kurun**
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+2. **Uygulamayı başlatın**
+   ```bash
+   streamlit run streamlit_app.py
+   ```
+3. Tarayıcıda açılan sayfada metin girerek analiz yapabilirsiniz.
 
 ## Project Structure
 - `backend/` – FastAPI server code and requirements.
@@ -9,14 +20,9 @@ This repository contains a Python project for sentiment analysis on Turkish text
 - `requirements.txt` – Top‑level dependencies.
 - `.env` – Environment variables (e.g., API keys).
 
-## Setup
-```bash
-# Clone the repo (already done)
-# Install dependencies
-pip install -r requirements.txt
-# Run the application
-python run_app.py
-```
+## Notlar
+- `google-generativeai` paketi hâlâ `requirements.txt` içinde bulunur, ancak kodda devre dışı bırakılmıştır.
+- `.streamlit/secrets.toml` içinde bir placeholder API anahtarı bulunur; gerçek bir anahtar eklemek isterseniz kodu eski hâline döndürmeniz yeterlidir.
 
 ## Usage
 - Open the Streamlit UI at `http://localhost:8501`.
