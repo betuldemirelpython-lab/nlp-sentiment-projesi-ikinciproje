@@ -17,7 +17,10 @@ st.set_page_config(
 
 # API Configuration
 # On Streamlit Cloud, we use st.secrets. Locally, we use .env
-API_KEY = st.secrets.get("API_KEY") or os.getenv("API_KEY")
+try:
+    API_KEY = st.secrets.get("API_KEY") or os.getenv("API_KEY")
+except Exception:
+    API_KEY = os.getenv("API_KEY")
 
 # Gemini API şu anda kullanılmayacak. Heuristic analiz kullanılacak.
 HAS_GEMINI = False

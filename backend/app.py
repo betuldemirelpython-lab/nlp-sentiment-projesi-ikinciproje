@@ -29,11 +29,11 @@ class TextRequest(BaseModel):
 
 def load_model():
     """Load tokenizer and model into module-level variables using PyTorch.
-    Uses 'distilbert-base-uncased-finetuned-sst-2-english' which is fine-tuned for sentiment analysis.
+    Uses 'savasy/bert-base-turkish-sentiment-cased' which is fine-tuned for Turkish sentiment analysis.
     """
     global tokenizer, model
     try:
-        model_name = "distilbert-base-uncased-finetuned-sst-2-english"
+        model_name = "savasy/bert-base-turkish-sentiment-cased"
         logger.info(f"Loading tokenizer and model: {model_name}")
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         model = AutoModelForSequenceClassification.from_pretrained(model_name)
@@ -103,8 +103,6 @@ def predict(
             "positive": positive_prob
         }
     except Exception as e:
-        logger.exception(f"Prediction failed: {e}")
-        # Log the exception and return a clear error
         logger.exception(f"Prediction failed: {e}")
         raise HTTPException(
             status_code=500,

@@ -102,7 +102,7 @@ st.markdown("""
 
 # Sidebar - API Configuration & Monitoring
 with st.sidebar:
-    st.image("https://img.icons8.com/nolan/96/artificial-intelligence.png", width=80)
+    st.markdown("# 🤖")
     st.markdown("## Sistem Durumu")
     
     # Check Backend Health

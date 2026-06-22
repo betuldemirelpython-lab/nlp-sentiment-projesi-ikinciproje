@@ -18,23 +18,26 @@ def main():
         for proc in psutil.process_iter(['pid', 'name']):
             try:
                 # Retrieve all inet connections for the process
-                conns = proc.connections(kind='inet')
+                try:
+                    conns = proc.net_connections(kind='inet')
+                except AttributeError:
+                    conns = proc.connections(kind='inet')
                 for conn in conns:
                     if conn.laddr.port == port:
                         try:
                             proc.kill()
-                            print(f"🛑 Killed PID {proc.pid} (port {port})")
+                            print(f"[-] Killed PID {proc.pid} (port {port})")
                         except Exception as e:
-                            print(f"⚠️ Failed to kill PID {proc.pid}: {e}")
+                            print(f"[!] Failed to kill PID {proc.pid}: {e}")
                         return
             except (psutil.AccessDenied, psutil.NoSuchProcess, psutil.ZombieProcess):
                 continue
-        print(f"ℹ️ No process found using port {port}")
+        print(f"[*] No process found using port {port}")
     if is_port_in_use(8000):
-        print("[-] 8000 portu zaten kullanımda – temizleniyor...")
+        print("[-] 8000 portu zaten kullanimda - temizleniyor...")
         kill_port(8000)
     if is_port_in_use(8501):
-        print("[-] 8501 portu zaten kullanımda – temizleniyor...")
+        print("[-] 8501 portu zaten kullanimda - temizleniyor...")
         kill_port(8501)
 
     print("[*] API Backend (FastAPI) baslatiliyor...")
